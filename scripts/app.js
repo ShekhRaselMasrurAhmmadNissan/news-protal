@@ -130,7 +130,11 @@ const displayAllNews = async (data, categoryName) => {
 							src="${authorImage}"
 							alt=""
 						/>
-						<p>${authorName}</p>
+						<p>${
+							authorName === null || authorName === ''
+								? 'No data found'
+								: authorName
+						}</p>
 					</div>
 					<div
 						class="flex flex-grow space-x-1 items-center justify-evenly font-medium dark:text-white"
@@ -155,7 +159,7 @@ const displayAllNews = async (data, categoryName) => {
 									d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
 								/>
 							</svg>
-							${total_view}
+							${total_view === null ? 'No data found' : total_view}
 						</p>
 						<div class="hidden lg:flex items-center mb-1">
 							<svg
