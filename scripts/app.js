@@ -107,17 +107,17 @@ const displayAllNews = async (data, categoryName) => {
 						alt=""
 					/>
 					<div
-						class="flex flex-col justify-between p-4 leading-normal"
+						class="flex flex-col p-4 leading-normal"
 					>
 						<h5
 							class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" title="${title}"
 						>
-							${title.length > 25 ? title.slice(0, 20) + '...' : title}
+							${title.length > 30 ? title.slice(0, 25) + '...' : title}
 						</h5>
 						<p
 							class="mb-3 font-normal text-gray-700 dark:text-gray-400"
 						>
-							${details.length > 150 ? details.slice(0, 150) + '...' : details}
+							${details.length > 250 ? details.slice(0, 250) + '...' : details}
 						</p>
 					</div>
 				</div>
