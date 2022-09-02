@@ -1,4 +1,12 @@
 /**
+ * Global Variables Start
+ */
+const newsCountField = document.getElementById('news-count');
+/**
+ * Global Variables End
+ */
+
+/**
  * All Functions Start From Here
  */
 
@@ -33,7 +41,7 @@ const displayCategories = async (data) => {
 		li.innerHTML = `
 			<a
 				href="#"
-				class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-xl" onclick="searchNewsByCategories('${category_id}')"
+				class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-xl" onclick="searchNewsByCategories('${category_id}', '${category_name}')"
 				>${category_name}</a
 			>
 		`;
@@ -45,15 +53,16 @@ const displayCategories = async (data) => {
  * @description This Function will take category id as parameter and fetch the news of that category from API
  * @author Shekh Rasel Masrur Ahmmad
  * @date 03/09/2022
- * @param {String} id
+ * @param {String} categoryID
  */
-const searchNewsByCategories = async (id) => {
-	const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+const searchNewsByCategories = async (categoryID, categoryName) => {
+	const url = `https://openapi.programming-hero.com/api/news/category/${categoryID}`;
+	newsCountField.classList.add('hidden');
 	toggleSpinner(true);
 	try {
 		const res = await fetch(url);
 		const data = await res.json();
-		displayAllNews(data.data);
+		displayAllNews(data.data, categoryName);
 	} catch (error) {
 		console.log(error);
 	}
@@ -64,10 +73,15 @@ const searchNewsByCategories = async (id) => {
  * @author Shekh Rasel Masrur Ahmmad
  * @date 03/09/2022
  * @param {Array} data
+ * @param {String} categoryName
  */
-const displayAllNews = async (data) => {
+const displayAllNews = async (data, categoryName) => {
 	toggleSpinner(false);
 	console.log(data);
+	showNewsCountMessage(data.length, categoryName);
+	data.forEach((news) => {
+		console.log(news);
+	});
 };
 
 /**
@@ -82,6 +96,26 @@ const toggleSpinner = (isLoading) => {
 		spinner.classList.remove('hidden');
 	} else {
 		spinner.classList.add('hidden');
+	}
+};
+
+/**
+ * @description
+ * @author Shekh Rasel Masrur Ahmmad
+ * @date 03/09/2022
+ * @param {Number} count
+ * @param {String} categoryName
+ */
+const showNewsCountMessage = (count, categoryName) => {
+	newsCountField.classList.remove('hidden');
+	if (count === 0) {
+		newsCountField.innerHTML = `
+			<h1 class="text-center text-4xl font-bold text-red-600">No Result Found</h1>
+		`;
+	} else {
+		newsCountField.innerHTML = `
+			<h1 class="text-center text-4xl font-bold text-green-600">${count} News Found for Category ${categoryName}</h1>
+		`;
 	}
 };
 
