@@ -76,11 +76,160 @@ const searchNewsByCategories = async (categoryID, categoryName) => {
  * @param {String} categoryName
  */
 const displayAllNews = async (data, categoryName) => {
+	const newsContainer = document.getElementById('news-container');
+	newsContainer.innerHTML = ``;
 	toggleSpinner(false);
 	console.log(data);
 	showNewsCountMessage(data.length, categoryName);
+	data.sort(function (a, b) {
+		return b.total_view - a.total_view;
+	});
 	data.forEach((news) => {
 		console.log(news);
+		const {
+			_id,
+			title,
+			thumbnail_url,
+			details,
+			total_view,
+			author: { name: authorName, published_date, img: authorImage },
+		} = news;
+		const div = document.createElement('div');
+		div.innerHTML = `
+			<div
+				href="#"
+				class="mx-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-col lg:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+			>
+				<div class="lg:flex">
+					<img
+						class="object-cover w-full h-96 rounded-t-lg md:h-auto lg:w-48 md:rounded-none md:rounded-l-lg"
+						src="${thumbnail_url}"
+						alt=""
+					/>
+					<div
+						class="flex flex-col justify-between p-4 leading-normal"
+					>
+						<h5
+							class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" title="${title}"
+						>
+							${title.length > 25 ? title.slice(0, 20) + '...' : title}
+						</h5>
+						<p
+							class="mb-3 font-normal text-gray-700 dark:text-gray-400"
+						>
+							${details.length > 150 ? details.slice(0, 150) + '...' : details}
+						</p>
+					</div>
+				</div>
+				<div
+					class="w-[95%] mx-auto md:flex justify-between items-center mt-2 mb-4 space-x-4"
+				>
+					<div class="flex items-center space-x-3">
+						<img
+							class="w-10 h-10 rounded-full"
+							src="${authorImage}"
+							alt=""
+						/>
+						<p>${authorName}</p>
+					</div>
+					<div
+						class="flex flex-grow space-x-1 items-center justify-evenly font-medium dark:text-white"
+					>
+						<p class="flex">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="w-6 h-6"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+								/>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+								/>
+							</svg>
+							${total_view}
+						</p>
+						<div class="hidden lg:flex items-center mb-1">
+							<svg
+								aria-hidden="true"
+								class="w-5 h-5 text-yellow-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>First star</title>
+								<path
+									d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+								></path>
+							</svg>
+							<svg
+								aria-hidden="true"
+								class="w-5 h-5 text-yellow-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>Second star</title>
+								<path
+									d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+								></path>
+							</svg>
+							<svg
+								aria-hidden="true"
+								class="w-5 h-5 text-yellow-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>Third star</title>
+								<path
+									d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+								></path>
+							</svg>
+							<svg
+								aria-hidden="true"
+								class="w-5 h-5 text-yellow-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>Fourth star</title>
+								<path
+									d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+								></path>
+							</svg>
+							<svg
+								aria-hidden="true"
+								class="w-5 h-5 text-yellow-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>Fifth star</title>
+								<path
+									d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+								></path>
+							</svg>
+						</div>
+						<button
+							type="button"
+							class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+						>
+							Read Full News
+						</button>
+					</div>
+				</div>
+			</div>
+		`;
+		newsContainer.appendChild(div);
 	});
 };
 
