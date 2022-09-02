@@ -33,7 +33,7 @@ const displayCategories = async (data) => {
 		li.innerHTML = `
 			<a
 				href="#"
-				class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-xl" onclick="searchProductsByCategories('${category_id}')"
+				class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-xl" onclick="searchNewsByCategories('${category_id}')"
 				>${category_name}</a
 			>
 		`;
@@ -47,14 +47,41 @@ const displayCategories = async (data) => {
  * @date 03/09/2022
  * @param {String} id
  */
-const searchProductsByCategories = async (id) => {
+const searchNewsByCategories = async (id) => {
 	const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+	toggleSpinner(true);
 	try {
 		const res = await fetch(url);
 		const data = await res.json();
-		console.log(data);
+		displayAllNews(data.data);
 	} catch (error) {
 		console.log(error);
+	}
+};
+
+/**
+ * @description This function will take a news list as parameter and Display them to the UI.
+ * @author Shekh Rasel Masrur Ahmmad
+ * @date 03/09/2022
+ * @param {Array} data
+ */
+const displayAllNews = async (data) => {
+	toggleSpinner(false);
+	console.log(data);
+};
+
+/**
+ * @description This function will take a boolean as parameter and toggle the spinner according to that parameter.
+ * @author Shekh Rasel Masrur Ahmmad
+ * @date 03/09/2022
+ * @param {boolean} isLoading
+ */
+const toggleSpinner = (isLoading) => {
+	const spinner = document.getElementById('spinner');
+	if (isLoading) {
+		spinner.classList.remove('hidden');
+	} else {
+		spinner.classList.add('hidden');
 	}
 };
 
