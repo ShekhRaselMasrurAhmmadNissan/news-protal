@@ -25,7 +25,37 @@ const loadAllCategories = async () => {
  * @param {Array} data
  */
 const displayCategories = async (data) => {
-	console.log(data);
+	const categoriesList = document.getElementById('categories-list');
+	data.forEach((category) => {
+		console.log(category);
+		const { category_id, category_name } = category;
+		const li = document.createElement('li');
+		li.innerHTML = `
+			<a
+				href="#"
+				class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-emerald-400 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-xl" onclick="searchProductsByCategories('${category_id}')"
+				>${category_name}</a
+			>
+		`;
+		categoriesList.appendChild(li);
+	});
+};
+
+/**
+ * @description This Function will take category id as parameter and fetch the news of that category from API
+ * @author Shekh Rasel Masrur Ahmmad
+ * @date 03/09/2022
+ * @param {String} id
+ */
+const searchProductsByCategories = async (id) => {
+	const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+	try {
+		const res = await fetch(url);
+		const data = await res.json();
+		console.log(data);
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 /**
