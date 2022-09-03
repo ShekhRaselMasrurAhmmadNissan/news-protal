@@ -434,3 +434,4 @@ const showNewsCountMessage = (count, categoryName) => {
  * Calling the functions that are needed to be loaded at the beginning
  */
 loadAllCategories();
+searchNewsByCategories('08', 'All News');
