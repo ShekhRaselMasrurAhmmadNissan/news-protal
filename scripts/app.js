@@ -2,6 +2,7 @@
  * Global Variables Start
  */
 const newsCountField = document.getElementById('news-count');
+const newsContainer = document.getElementById('news-container');
 /**
  * Global Variables End
  */
@@ -62,6 +63,7 @@ const searchNewsByCategories = async (categoryID, categoryName) => {
 	const url = `https://openapi.programming-hero.com/api/news/category/${categoryID}`;
 	newsCountField.classList.add('hidden');
 	toggleSpinner(true);
+	newsContainer.innerHTML = ``;
 	try {
 		const res = await fetch(url);
 		const data = await res.json();
@@ -79,8 +81,8 @@ const searchNewsByCategories = async (categoryID, categoryName) => {
  * @param {String} categoryName
  */
 const displayAllNews = async (data, categoryName) => {
-	const newsContainer = document.getElementById('news-container');
-	newsContainer.innerHTML = ``;
+	
+	
 	toggleSpinner(false);
 	console.log(data);
 	showNewsCountMessage(data.length, categoryName);
