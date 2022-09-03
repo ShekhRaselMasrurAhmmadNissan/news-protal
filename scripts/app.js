@@ -268,10 +268,10 @@ const displaySingleNews = async (news) => {
 	} = news;
 	modalBody.innerHTML = `
 		<img
+			class="w-full"
 			src="${image_url}"
 			alt=""
 		/>
-
 		<article>
 			<div class="flex items-center mb-4 space-x-4 justify-between w-[95%] mx-auto mt-2">
 				<div class="flex items-center mb-4 space-x-4">
@@ -282,7 +282,7 @@ const displaySingleNews = async (news) => {
 					/>
 					<div class="space-y-1 font-medium dark:text-white">
 						<p>
-							${authorName}
+							${authorName === null || authorName === '' ? 'No data found' : authorName}
 							<time
 								class="block text-sm text-gray-500 dark:text-gray-400"
 								>${published_date}</time
@@ -290,6 +290,7 @@ const displaySingleNews = async (news) => {
 						</p>
 					</div>
 				</div>
+				
 				<!-- Views -->
 				<p class="flex">
 					<svg
@@ -311,7 +312,7 @@ const displaySingleNews = async (news) => {
 							d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
 						/>
 					</svg>
-					${total_view}
+					${total_view === null ? 'No data found' : total_view}
 				</p>
 				<!-- Ratings -->
 				<div class="flex items-center mb-1">
@@ -378,6 +379,11 @@ const displaySingleNews = async (news) => {
 					<span class="ml-2">${ratingNumber}</span>
 				</div>
 			</div>
+			<!-- News Title -->
+			<h5
+				class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+				${title}
+			</h5>
 			<p class="mb-2  dark:text-gray-400">
 				${details}
 			</p>
