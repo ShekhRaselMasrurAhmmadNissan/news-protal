@@ -97,6 +97,7 @@
 		<main class="my-10">
 			<section class="container w-[90%] mx-auto">
 				<div id="accordion-collapse" data-accordion="collapse">
+					<!-- First Question Answer Start -->
 					<h2 id="accordion-collapse-heading-1">
 						<button
 							type="button"
@@ -105,7 +106,10 @@
 							aria-expanded="true"
 							aria-controls="accordion-collapse-body-1"
 						>
-							<span>What is Flowbite?</span>
+							<span
+								>What is differences between Var, Let and Const
+								keyword in JavaScript?</span
+							>
 							<svg
 								data-accordion-icon=""
 								class="w-6 h-6 rotate-180 shrink-0"
@@ -129,24 +133,64 @@
 						<div
 							class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900"
 						>
-							<p class="mb-2 text-gray-500 dark:text-gray-400">
-								Flowbite is an open-source library of
-								interactive components built on top of Tailwind
-								CSS including buttons, dropdowns, modals,
-								navbars, and more.
-							</p>
-							<p class="text-gray-500 dark:text-gray-400">
-								Check out this guide to learn how to
-								<a
-									href="/docs/getting-started/introduction/"
-									class="text-blue-600 dark:text-blue-500 hover:underline"
-									>get started</a
-								>
-								and start developing websites even faster with
-								components on top of Tailwind CSS.
+							<p
+								class="mb-2 text-black dark:text-gray-400"
+							>
+								<strong class="font-semibold text-lg">var:</strong>
+								<br>
+								<span class=" font-normal text-black">
+									Earlier only var was there and it was the king
+									of variable declarations. But there are some
+									issues associated with variables declared with
+									var, though. That is why let and const were
+									introduced.<br />
+									Var declarations are globally scoped or function
+									scoped. That means if a variable is declared
+									with var outside a function then it is in the
+									global scope(accessible anywhere). Otherwise, if
+									they are inside a function we can only access
+									them inside the function.<br />
+									One of the issues with the var keyword is they
+									can be re-declared inside the same scope. And
+									another issue with var is these variables are
+									not blocked scope which means if var is declared
+									within any {}(block statements), they are not
+									scoped to that block but to the entire global
+									scope.
+								</span>
+								<br />
+								<hr />
+								<br />
+								<strong class="font-semibold text-lg">let:</strong>
+								<br>
+								<span class=" font-normal text-black">
+									It’s an enhanced version of var, it solves all
+									the problems that come with the var keyword.
+									Like, let is a block-scoped variable and we
+									cannot re-declared but can be
+									updated(re-assigned). You’ll see in the below
+									example as it shows that let is preferable over
+									var.
+								</span>
+								<br />
+								<hr />
+								<br />
+								<strong class="font-semibold text-lg">const:</strong>
+								<br>
+								<span class=" font-normal text-black"> 
+									Const declarations share some similarities with
+									let declarations, but const variables cannot be
+									updated or re-declared. It maintains the
+									constant values. Unlike var and let, if we are
+									using const then it must be initialized at the
+									same time when we declared the variable.
+								</span>
 							</p>
 						</div>
 					</div>
+					<!-- First Question Answer End -->
+
+					<!-- Second Question Answer Start -->
 					<h2 id="accordion-collapse-heading-2">
 						<button
 							type="button"
@@ -155,7 +199,7 @@
 							aria-expanded="false"
 							aria-controls="accordion-collapse-body-2"
 						>
-							<span>Is there a Figma file available?</span>
+							<span>What are the differences between arrow functions and regular functions in JavaScript?</span>
 							<svg
 								data-accordion-icon=""
 								class="w-6 h-6 shrink-0"
@@ -179,24 +223,22 @@
 						<div
 							class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700"
 						>
-							<p class="mb-2 text-gray-500 dark:text-gray-400">
-								Flowbite is first conceptualized and designed
-								using the Figma software so everything you see
-								in the library has a design equivalent in our
-								Figma file.
-							</p>
-							<p class="text-gray-500 dark:text-gray-400">
-								Check out the
-								<a
-									href="https://flowbite.com/figma/"
-									class="text-blue-600 dark:text-blue-500 hover:underline"
-									>Figma design system</a
-								>
-								based on the utility classes from Tailwind CSS
-								and components from Flowbite.
+							<p class="mb-2 dark:text-gray-400">
+								<span class="font-normal text-black">
+									The first and most obvious difference between arrow functions and regular functions is their syntax. Not only do they look different, but arrow functions also provide an implicit return shorthand and allow parenthesis around a single argument to be omitted.
+								</span><br>
+								<span class="font-normal text-black">
+									Inside a regular function, execution context (i.e. the value of this) is dynamic. This means that the value of this depends on how the function was invoked (simple invocation, method invocation, indirect invocation or constructor invocation). On the other hand, an arrow function does not define its own execution context. This results in an arrow function's this being resolved lexically (i.e. the scope in which the arrow function was defined).
+								</span><br>
+								<span class="font-normal text-black">
+									Another difference is the binding of the arguments object. Unlike regular functions, arrow functions don't have their own arguments object. A modern alternative that circumvents this limitation is the usage of rest parameters.
+								</span>
 							</p>
 						</div>
 					</div>
+					<!-- Second Question Answer End -->
+
+					<!-- Third Question Answer Start -->
 					<h2 id="accordion-collapse-heading-3">
 						<button
 							type="button"
@@ -270,6 +312,9 @@
 							</ul>
 						</div>
 					</div>
+					<!-- Third Question Answer End -->
+
+					<!-- Fourth Question Answer Start -->
 					<h2 id="accordion-collapse-heading-4">
 						<button
 							type="button"
@@ -343,6 +388,7 @@
 							</ul>
 						</div>
 					</div>
+					<!-- Fourth Question Answer End -->
 				</div>
 			</section>
 		</main>
