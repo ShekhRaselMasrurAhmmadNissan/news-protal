@@ -17,6 +17,7 @@ const newsCountField = document.getElementById('news-count');
  */
 const loadAllCategories = async () => {
 	const url = `https://openapi.programming-hero.com/api/news/categories`;
+	toggleSpinner(true);
 	try {
 		const res = await fetch(url);
 		const data = await res.json();
@@ -33,6 +34,8 @@ const loadAllCategories = async () => {
  * @param {Array} data
  */
 const displayCategories = async (data) => {
+	toggleSpinner(false);
+	document.getElementById('sorting-control').classList.remove('hidden');
 	const categoriesList = document.getElementById('categories-list');
 	data.forEach((category) => {
 		console.log(category);
