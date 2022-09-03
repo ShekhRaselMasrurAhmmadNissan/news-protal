@@ -226,7 +226,7 @@ const displayAllNews = async (data, categoryName) => {
 								></path>
 							</svg>
 						</div>
-						<label for="my-modal-4" class="btn modal-button" onclick="loadSingleNews('${_id}')">Read Full News</label>
+						<label for="my-modal-4" class="btn btn-primary modal-button" onclick="loadSingleNews('${_id}')">Read Full News</label>
 
 					</div>
 				</div>
