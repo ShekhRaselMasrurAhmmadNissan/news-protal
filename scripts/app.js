@@ -81,8 +81,6 @@ const searchNewsByCategories = async (categoryID, categoryName) => {
  * @param {String} categoryName
  */
 const displayAllNews = async (data, categoryName) => {
-	
-	
 	toggleSpinner(false);
 	console.log(data);
 	showNewsCountMessage(data.length, categoryName);
@@ -436,4 +434,4 @@ const showNewsCountMessage = (count, categoryName) => {
  * Calling the functions that are needed to be loaded at the beginning
  */
 loadAllCategories();
-searchNewsByCategories('08', 'All News');
+searchNewsByCategories('01', 'Breaking News');
